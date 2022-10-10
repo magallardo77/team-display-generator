@@ -5,73 +5,77 @@ const Manager = require("../lib/Manager");
 
 
 function generateCards(membersArray) {
-    for (member of membersArray) {
-        switch (member.getRole()) {
+    let HTMLcardsString = ''
+    for (i = 0; i<membersArray.length; i++) {
+        switch (membersArray[i].getRole()) {
             case "Manager":
                 
-                return `
+                HTMLcardsString = HTMLcardsString + `
                 <section id="memberCards" class="mainContent"> 
                 <div class="col-4 mt-4">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h3>Jasmine ${member.name}</h3> 
-                            <h4>${member.getRole()}</h4><i class="material-icons"></i>
+                            <h3> ${membersArray[i].name}</h3> 
+                            <h4>${membersArray[i].getRole()}</h4><i class="material-icons"></i>
                         </div>
             
                         <div class="card-body">
-                            <p class="id">ID: ${member.id}</p> 
-                            <p class="email">Email: ${member.email}<a href=""></a></p>
-                            <p class="office">Office Number: ${member.getOfficeNumber()}</p>
+                            <p class="id">ID: ${membersArray[i].id}</p> 
+                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="office">Office Number: ${membersArray[i].getOfficeNumber()}</p>
                         </div>
             
                     </div>
                 </div>
             </section>`; 
-        
+            break;
             case "Engineer":
 
-                return `
+                HTMLcardsString = HTMLcardsString + `
                 <section id="memberCards" class="mainContent"> 
                 <div class="col-4 mt-4">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h3>${member.name}</h3>
-                            <h4>${member.getRole()}</h4><i class="material-icons"></i>
+                            <h3>${membersArray[i].name}</h3>
+                            <h4>${membersArray[i].getRole()}</h4><i class="material-icons"></i>
                         </div>
             
                         <div class="card-body">
-                            <p class="id">ID: ${member.id}</p>
-                            <p class="email">Email: ${member.email}<a href=""></a></p>
-                            <p class="github">Github: ${member.getGithub()}<a href=""></a></p>
+                            <p class="id">ID: ${membersArray[i].id}</p>
+                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="github">Github: ${membersArray[i].getGithub()}<a href=""></a></p>
                         </div>
             
                     </div>
                 </div>
             </section>`; 
-
+            break;
             case "Intern":
 
-                return `
+                HTMLcardsString = HTMLcardsString + `
                 <section id="memberCards" class="mainContent"> 
                 <div class="col-4 mt-4">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h3>${member.name}</h3>
-                            <h4>${member.getRole()}</h4><i class="material-icons"></i>
+                            <h3>${membersArray[i].name}</h3>
+                            <h4>${membersArray[i].getRole()}</h4><i class="material-icons"></i>
                         </div>
             
                         <div class="card-body">
-                            <p class="id">ID: ${member.id}</p>
-                            <p class="email">Email: ${member.email}<a href=""></a></p>
-                            <p class="school">School: ${member.getSchool()}</p>
+                            <p class="id">ID: ${membersArray[i].id}</p>
+                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="school">School: ${membersArray[i].getSchool()}</p>
                         </div>
                 </div>
             </div>
             </section>`;
+            break;
         }
     }
-        
+        return HTMLcardsString;
         }
+
+    // function generateList(members)
 
 
 
