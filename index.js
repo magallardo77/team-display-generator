@@ -1,5 +1,11 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const generateHTML = require("./src/generateHTML");
+
 
 managerQuestions = [
     {
@@ -8,20 +14,20 @@ managerQuestions = [
     },
     {
         message: "What's your manager's ID number?",
-        name: "employeeID",
+        name: "managerId",
     },
     {
         message: "What's your manager's email address?",
-        name: "emailName",
+        name: "managerEmail",
     },
     {
         message: "What's your manager's office number?",
-        name: "managerName",
+        name: "managerOffice",
     },
     {   
         type: "list",
         message: "What role would you like to add to your team?",
-        name: "roleName",
+        name: "employeeRole",
         choices: ["Engineer", "Intern", "None, I am finished building my team."]
     },
 ]
@@ -29,24 +35,24 @@ managerQuestions = [
 engineerQuestions = [
     {
         message: "What's the engineer's name?",
-        name: "managerName",
+        name: "engineerName",
     },
     {
         message: "What's your engineer's ID number?",
-        name: "employeeID",
+        name: "engineerId",
     },
     {
         message: "What's your engineer's email address?",
-        name: "emailName",
+        name: "engineerEmail",
     },
     {
         message: "What's your engineer's Github username?",
-        name: "managerName",
+        name: "engineerGithub",
     },
     {   
         type: "list",
         message: "What role would you like to add to your team?",
-        name: "roleName",
+        name: "employeeRole",
         choices: ["Engineer", "Intern", "None, I am finished building my team."]
     },
 ]
@@ -54,33 +60,42 @@ engineerQuestions = [
 internQuestions = [
     {
         message: "What's your intern's name?",
-        name: "managerName",
+        name: "internName",
     },
     {
         message: "What's your intern's ID number?",
-        name: "employeeID",
+        name: "internId",
     },
     {
         message: "What's your intern's email address?",
-        name: "emailName",
+        name: "internEmail",
     },
     {
         message: "What's your intern's school?",
-        name: "managerName",
+        name: "internSchool",
     },
     {   
         type: "list",
         message: "What role would you like to add to your team?",
-        name: "roleName",
+        name: "employeeRole",
         choices: ["Engineer", "Intern", "None, I am finished building my team."]
     },
 ]
 
+let membersObjArray = [];
+
 function init() {
     inquirer.prompt(managerQuestions)
         .then((answers) =>  {
-        if (answers.roleName === "Engineer") engineerPrompt();
-        else if (answers.roleName === "Engineer") internPrompt();
+            let newManager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOffice)
+
+            membersObjArray.push(newManager)
+
+        if (answers.employeeRole === "Engineer") engineerPrompt();
+        else if (answers.employeeRole === "Intern") internPrompt();
+        else {
+            fs.writeFile("./dist/index.html", generateHTML(membersObjArray), (err) => err ? console.log("failed") : console.log("Success!"));
+        }
         }
         )
 }
@@ -88,16 +103,28 @@ function init() {
 function engineerPrompt() {
     inquirer.prompt(engineerQuestions)
         .then((answers) =>  {
-            if (answers.roleName === "Engineer") engineerPrompt();
-            else if (answers.roleName === "Intern") internPrompt();
+            let newEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
+
+            membersObjArray.push(newEngineer)
+            if (answers.employeeRole === "Engineer") engineerPrompt();
+            else if (answers.employeeRole === "Intern") internPrompt();
+            else {
+                fs.writeFile("./dist/index.html", generateHTML(membersObjArray), (err) => err ? console.log("failed") : console.log("Success!"));
+            }
         }
         )
 }
 function internPrompt() {
     inquirer.prompt(internQuestions)
         .then((answers) =>  {
-            if (answers.roleName === "Engineer") engineerPrompt();
-            else if (answers.roleName === "Intern") internPrompt();
+            let newIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+
+            membersObjArray.push(newIntern)
+            if (answers.employeeRole === "Engineer") engineerPrompt();
+            else if (answers.employeeRole === "Intern") internPrompt();
+            else {
+                fs.writeFile("./dist/index.html", generateHTML(membersObjArray), (err) => err ? console.log("failed") : console.log("Success!"));
+            }
         }
         )
 }
