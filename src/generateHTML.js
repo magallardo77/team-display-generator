@@ -21,7 +21,7 @@ function generateCards(membersArray) {
             
                         <div class="card-body">
                             <p class="id">ID: ${membersArray[i].id}</p> 
-                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="email">Email: <a href="mailto:${membersArray[i].email}"></a></p>
                             <p class="office">Office Number: ${membersArray[i].getOfficeNumber()}</p>
                         </div>
             
@@ -42,7 +42,7 @@ function generateCards(membersArray) {
             
                         <div class="card-body">
                             <p class="id">ID: ${membersArray[i].id}</p>
-                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="email">Email: <a href="mailto:${membersArray[i].email}"></a></p>
                             <p class="github">Github: ${membersArray[i].getGithub()}<a href=""></a></p>
                         </div>
             
@@ -63,7 +63,7 @@ function generateCards(membersArray) {
             
                         <div class="card-body">
                             <p class="id">ID: ${membersArray[i].id}</p>
-                            <p class="email">Email: ${membersArray[i].email}<a href=""></a></p>
+                            <p class="email">Email: <a href="mailto:${membersArray[i].email}"></a></p>
                             <p class="school">School: ${membersArray[i].getSchool()}</p>
                         </div>
                 </div>
