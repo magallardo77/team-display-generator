@@ -1,24 +1,25 @@
 * {
+    
     font-family: sans-serif;
     box-sizing: border-box;
 }
 h3 {
     text-align: center;
-    background-color: red;
     height: 130px;
     padding-top: 40px;
 }
-.person {
-    background-color: blue;
+.mainContent {
+    background-color: #c6cdff;
     color: white;
     font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
 }
-.column {
-    float: left;
-    width: 25%;
-    padding: 0 10px;
+.card {
+    background-color: #10284f;
+   
 }
-/* Remove extra left and right margins, due to padding in columns */
-.row {
-    margin: 0 -5px;
+
+.card-header {
+    background-color: #3d59a4;
 }

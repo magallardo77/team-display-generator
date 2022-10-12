@@ -6,7 +6,7 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const generateHTML = require("./src/generateHTML");
 
-
+// Array of questions when running the file in node
 managerQuestions = [
     {
         message: "What's the team managers name?",
@@ -84,6 +84,7 @@ internQuestions = [
 
 let membersObjArray = [];
 
+//Functions used to generate questions and creates new file with user input
 function init() {
     inquirer.prompt(managerQuestions)
         .then((answers) =>  {
